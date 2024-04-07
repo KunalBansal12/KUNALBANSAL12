@@ -1,11 +1,11 @@
 class Solution {
 public:
-    int help(int ind,int n,vector<int>& vis,vector<vector<int>>& adj,int k,int parent,vector<int>& closer,vector<int>& sum){
+    int help(int ind,vector<int>& vis,vector<vector<int>>& adj,int parent,vector<int>& closer,vector<int>& sum){
         vis[ind]=parent;
         int close=1;
         for(int i=0;i<adj[ind].size();i++){
             if(vis[adj[ind][i]]==-1){
-                int ans=help(adj[ind][i],n,vis,adj,k+1,ind,closer,sum);
+                int ans=help(adj[ind][i],vis,adj,ind,closer,sum);
                 close+=ans;
                 sum[0]+=ans;
             }
@@ -23,7 +23,7 @@ public:
             adj[edges[i][0]].push_back(edges[i][1]);
             adj[edges[i][1]].push_back(edges[i][0]);
         }
-        help(0,n,vis,adj,1,0,closer,sum);
+        help(0,vis,adj,0,closer,sum);
 
         for(int i=0;i<adj[0].size();i++){
             dfs(adj[0][i],sum,closer,adj,vis);
