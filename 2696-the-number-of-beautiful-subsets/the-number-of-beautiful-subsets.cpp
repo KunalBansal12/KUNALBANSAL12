@@ -5,12 +5,10 @@ public:
         else if(i==nums.size()) return 1;
         int a=0,b=0;
         a=help(nums,k,i+1,siz,map);
-        if(map[nums[i]-k]!=1 && map[nums[i]+k]!=1){
-            bool y=false;
-            if(map[nums[i]]) y=true;
-            map[nums[i]]=1;
+        if(!map[nums[i]-k] && !map[nums[i]+k]){
+            map[nums[i]]++;
             b=help(nums,k,i+1,siz+1,map);
-            if(!y) map[nums[i]]=0;
+            map[nums[i]]--;
         }
         return a+b;
     }
