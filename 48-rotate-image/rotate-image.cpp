@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // We can also use the approach to first transpose and then reverse all rows
     vector<vector<int>> helper(vector<vector<int>>& matrix,int si,int ei){
         if(si>=ei){
             return matrix;
