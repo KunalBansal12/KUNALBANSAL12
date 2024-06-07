@@ -15,7 +15,7 @@ public:
         if(Rabin_Karp(source+A,B) != -1) return count+1;
         return -1;
     }
-    
+
     int Rabin_Karp(string source, string target){
         if(source == "" or target == "") return -1;
         int m = target.size();
