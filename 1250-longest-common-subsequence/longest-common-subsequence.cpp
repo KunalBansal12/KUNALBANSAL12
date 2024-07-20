@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // used only 2 arrays
     int longestCommonSubsequence(string text1, string text2) {
         int n=text1.size(),m=text2.size();
         vector<int> fir(m+1,0);
