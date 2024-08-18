@@ -1,23 +1,20 @@
-#define ll long long
 class Solution {
 public:
-    int nthUglyNumber(int n) {
-        priority_queue<ll,vector<ll>,greater<ll>> pq;
-        unordered_map<ll,int> map;
-        int primes[]={2,3,5};
-        pq.push(1);
-        while(n>0){
-            ll p=pq.top();
-            pq.pop();
-            n--;
-            if(n==0) return p;
-            for(int i=0;i<3;i++){
-                if(!map[p*primes[i]]){
-                    pq.push(p*primes[i]);
-                    map[p*primes[i]]=1;
-                }
-            }
+    int nthUglyNumber(int n) { 
+        vector<int>arr(n+1);
+        int i2,i3,i5;
+        i2=i3=i5=1;
+        arr[1]=1;
+        for(int i=2;i<n+1;i++){
+            int i2ug=arr[i2]*2;
+            int i3ug=arr[i3]*3;
+            int i5ug=arr[i5]*5;
+            int minug=min(i2ug,min(i3ug,i5ug));
+            arr[i]=minug;
+            if(minug==i2ug) i2++;
+            if(minug==i3ug) i3++;
+            if(minug==i5ug) i5++;
         }
-        return -1;
+        return arr[n];
     }
 };
