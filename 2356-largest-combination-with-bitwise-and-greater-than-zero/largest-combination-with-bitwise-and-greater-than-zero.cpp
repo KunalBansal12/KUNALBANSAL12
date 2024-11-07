@@ -4,7 +4,7 @@ public:
         int n=nums.size();
         vector<int> bits(30,0);
         for(int i=0;i<n;i++){
-            for(int j=0;j<30;j++){
+            for(int j=0;j<24;j++){
                 bits[j]+=nums[i]%2;
                 nums[i]=nums[i]/2;
             }
