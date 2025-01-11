@@ -1,19 +1,18 @@
 class p{
     public:
     int start,end;
-    p(){};
-    p(int x,int y){
-        start=x,end=y;
+    p(int a,int b){
+        start=a;
+        end=b;
     }
+    p(){}
 };
 
 class compa{
     public:
     bool operator()(p&a,p&b){
-        if(a.end<b.end) return true;
-        else if(a.end==b.end){
-            if(a.start<b.start) return true;
-        }
+        if(a.start>b.start) return true;
+        else if(a.start==b.start && a.end>b.end) return true;
         return false;
     }
 };
@@ -26,15 +25,18 @@ public:
             pq.push(p(intervals[i][0],intervals[i][1]));
         }
         vector<vector<int>> ans;
+        int i=0;
         while(pq.size()){
-            vector<int> a1(2,0);
-            a1[0]=pq.top().start;
-            a1[1]=pq.top().end;
-            while(pq.size() && pq.top().end>=a1[0]){
-                a1[0]=min(a1[0],pq.top().start);
+            vector<int> num;
+            num.push_back(pq.top().start);
+            int e=pq.top().end;
+            pq.pop();
+            while(pq.size() && pq.top().start<=e){
+                if(e<pq.top().end) e=pq.top().end;
                 pq.pop();
             }
-            ans.push_back(a1);
+            num.push_back(e);
+            ans.push_back(num);
         }
         return ans;
     }
